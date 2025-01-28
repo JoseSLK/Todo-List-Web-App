@@ -19,7 +19,7 @@ body {
   align-items: center;
   position: relative;
   font-family: 'Bunken Tech Sans SC Wide Med', sans-serif;
-  max-width: 100vw;
+  max-width: 85vw;
   max-height: 100vh;
   overflow: visible;
 }

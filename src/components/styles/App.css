@@ -1,6 +1,7 @@
 /* Item Task */
 .td-item {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     border-radius: 4px;
@@ -14,6 +15,8 @@
 }
 .td-item-toogle{
     display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .td-item-title, .td-item-tr {
@@ -25,21 +28,58 @@
 }
 
 .td-item-title{
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #F2F2F2;
     max-width: 400px;
     overflow: auto;
+}
+
+.td-item-title-complete {
+    text-decoration: line-through;
+    color: #BFBFBF;
 }
 .td-item-tr {
     font-size: 0.8rem;
     color: #BFBFBF;
 }
 
-.td-todo-list {padding: 0;}
+.td-todo-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 1rem;
+}
 
 .td-item-content {
     color: #F2F2F2;
     font-family: inherit;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.td-item-check {
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: #6852F2;
+    border: none;
+    border-radius: 50%;
+    cursor: crosshair;
+    transition: all 0.3s ease-in-out;
+}
+.td-item-check-complete {
+    background-color: #30F284;
+}
+
+.td-delete-icon {
+    display: flex;
+    position: absolute;
+    right: -4px;
+    top: -6px;
+    color: #D9043D;
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
 /* Item title counter */

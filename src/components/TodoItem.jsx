@@ -11,17 +11,14 @@ function timeRemaining(end_date){
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-export function TodoItem ( { title, description, end_date, completed } ){
+export function TodoItem ( { title, description, end_date, completed, id, onComplete} ){
 
-    const [isCompleted, setIsCompleted] = useState(completed);
     const [isVisible, setIsVisible] = useState(false);
     const [timeRemainingText, setTimeRemainingText] = useState(timeRemaining(end_date));
     const contentRef = useRef(null);
 
-    const toggleCompleted = () => {
-        setIsCompleted(!isCompleted);
-    }
-    const toggleVisibility = () => {
+    const toggleVisibility = (e) => {
+        e.stopPropagation();
         setIsVisible(!isVisible);
     }
 
@@ -37,13 +34,31 @@ export function TodoItem ( { title, description, end_date, completed } ){
     }, [end_date]);
 
     return (    
-        <div className="td-item" onClick={toggleCompleted}>
+        <div className="td-item">
+
             <div className='td-item-toogle'>
-                <h3 className='td-item-title' onClick={toggleVisibility} >
+                <input 
+                    type="checkbox" 
+                    id={`checkbox-${id}`}
+                    className='hidden-checkbox' 
+                    checked={completed} 
+                    onChange={() => {
+                        onComplete();
+                        }  
+                    }
+                />
+                <label 
+                    htmlFor={`checkbox-${id}`}
+                    className={`td-item-check ${completed && "td-item-check-complete"}`} //Por que no se actualiza la clase cuando se da click?
+                ></label>
+                <h3 className={`td-item-title ${completed && "td-item-title-complete"}`} onClick={toggleVisibility} >
                     {isVisible ? '▲' : '▼'} {title}
                 </h3>
                 <p className='td-item-tr'>T-R: {timeRemainingText}</p>
             </div>
+
+            <span className='td-delete-icon'>X</span>
+
             <div className='td-item-content'
                 style ={{
                     maxHeight: isVisible ? `${contentRef.current.scrollHeight}px` : '0px',

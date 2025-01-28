@@ -9,40 +9,73 @@ import { TodoSearch } from './components/TodoSearch'
 
 const todoItems = [
   {
-    title: "Hacer pasta para el almuerzo",
+    title: "Entrar a la Universidad",
     description: "Con agua y jabon",
-    end_date: "2025-02-20T14:30:00",
-    completed: false
+    end_date: "2025-02-10T08:00:00",
+    completed: false,
+    id: 1
   },
   {
-    title: "Tarea 2",
+    title: "Tarea2",
     description: "Descripción de la tarea 2",
     end_date: "2025-02-25T10:00:00",
-    completed: true
+    completed: true,
+    id: 2
   },
   {
-    title: "Tarea 3",
+    title: "Tarea3",
     description: "Descripción de la tarea 3",
     end_date: "2025-03-01T12:00:00",
-    completed: false
+    completed: false,
+    id: 3
   },
   {
-    title: "Tarea 4",
-    description: "Descripción de la tarea 3",
+    title: "Tarea4",
+    description: "Descripción de la tarea 4",
     end_date: "2025-03-01T12:00:00",
-    completed: false
+    completed: false,
+    id: 4
   }
 ];
 
 function App() {
+  const [todos, setTodos] = useState(todoItems);
+  const [searchValue, setSearchValue] = useState('');
+
+  const completedTodos = todos.filter(todo => !!todo.completed).length;
+  const totalTodos = todos.length;
+  const searchedTodos = todos.filter(
+    todo => todo.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  const completeTodo = (title) => {
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex( todo => todo.title === title);
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+    setTodos(newTodos)
+  }
 
   return (
     <>
-      <TodoCounter total={15} completed={4}/>
-      <TodoSearch />
+      <TodoCounter
+        total={totalTodos} 
+        completed={completedTodos}
+      />
+      <TodoSearch 
+        searchValue={searchValue} 
+        setSearchValue={setSearchValue}
+      />
       <TodoList>
-        {todoItems.map(todo => (
-          <TodoItem key={todo.title} title={todo.title} description={todo.description} end_date={todo.end_date} completed={todo.completed}/>
+        {searchedTodos.map(todo => (
+          <TodoItem 
+            key={todo.title} 
+            title={todo.title} 
+            description={todo.description} 
+            end_date={todo.end_date} 
+            completed={todo.completed} 
+            id={todo.id}
+            onComplete={() => completeTodo(todo.title)}
+          />
         ))}
       </TodoList>
       <TodoButtonCreate/>
