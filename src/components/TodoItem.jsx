@@ -11,10 +11,10 @@ function timeRemaining(end_date){
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-export function TodoItem ( { title, description, end_date, completed, id, onComplete} ){
+export function TodoItem ( props ){
 
     const [isVisible, setIsVisible] = useState(false);
-    const [timeRemainingText, setTimeRemainingText] = useState(timeRemaining(end_date));
+    const [timeRemainingText, setTimeRemainingText] = useState(timeRemaining(props.end_date));
     const contentRef = useRef(null);
 
     const toggleVisibility = (e) => {
@@ -24,14 +24,14 @@ export function TodoItem ( { title, description, end_date, completed, id, onComp
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setTimeRemainingText(timeRemaining(end_date));
+            setTimeRemainingText(timeRemaining(props.end_date));
         }, 5000);
 
         return () => {
             clearInterval(intervalId);
         };
 
-    }, [end_date]);
+    }, [props.end_date]);
 
     return (    
         <div className="td-item">
@@ -39,25 +39,30 @@ export function TodoItem ( { title, description, end_date, completed, id, onComp
             <div className='td-item-toogle'>
                 <input 
                     type="checkbox" 
-                    id={`checkbox-${id}`}
+                    id={`checkbox-${props.id}`}
                     className='hidden-checkbox' 
-                    checked={completed} 
+                    checked={props.completed} 
                     onChange={() => {
-                        onComplete();
+                        props.onComplete();
                         }  
                     }
                 />
                 <label 
-                    htmlFor={`checkbox-${id}`}
-                    className={`td-item-check ${completed && "td-item-check-complete"}`} //Por que no se actualiza la clase cuando se da click?
+                    htmlFor={`checkbox-${props.id}`}
+                    className={`td-item-check ${props.completed && "td-item-check-complete"}`} //Por que no se actualiza la clase cuando se da click?
                 ></label>
-                <h3 className={`td-item-title ${completed && "td-item-title-complete"}`} onClick={toggleVisibility} >
-                    {isVisible ? '▲' : '▼'} {title}
+                <h3 className={`td-item-title ${props.completed && "td-item-title-complete"}`} onClick={toggleVisibility} >
+                    {isVisible ? '▲' : '▼'} {props.title}
                 </h3>
                 <p className='td-item-tr'>T-R: {timeRemainingText}</p>
             </div>
 
-            <span className='td-delete-icon'>X</span>
+            <span 
+                className='td-delete-icon'
+                onClick={ () => {
+                    props.onDelete();
+                }}
+            >X</span>
 
             <div className='td-item-content'
                 style ={{
@@ -65,7 +70,7 @@ export function TodoItem ( { title, description, end_date, completed, id, onComp
                     overflow: 'hidden',
                     transition: 'max-height 0.3s ease-in-out',
                 }} ref={contentRef}>
-                <p className='td-item-description'>{description}</p>
+                <p className='td-item-description'>{props.description}</p>
             </div>
             
         </div>
