@@ -67,6 +67,7 @@
     height: 1.2rem;
     width: 1.2rem;
     background-color: #6852F2;
+    margin: 5px;
     border: none;
     border-radius: 50%;
     cursor: crosshair;
@@ -143,6 +144,35 @@
     height: 1.4rem;
     width: 70%;
     font-family: 'Bunken Tech Sans SC Wide Med', sans-serif;
+}
+
+/* Congrats message */
+.td-congrats-message {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+    color: #30F284;
+    font-weight: 700;
+    background-color: rgb(89, 88, 86, 0.8);
+    box-shadow: 0 0 20px 5px rgba(89, 88, 86, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    border: none;
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.td-congrats-message.fade-in {
+    opacity: 1; /* Visible */
+    transform: translate(-50%, -50%) scale(1); 
+}
+
+.td-congrats-message.fade-out {
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.9); 
 }
 /* Responsive design */
 @media (max-width: 768px) {

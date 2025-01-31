@@ -49,7 +49,7 @@ export function TodoItem ( props ){
                 />
                 <label 
                     htmlFor={`checkbox-${props.id}`}
-                    className={`td-item-check ${props.completed && "td-item-check-complete"}`} //Por que no se actualiza la clase cuando se da click?
+                    className={`td-item-check ${props.completed && "td-item-check-complete"}`} 
                 ></label>
                 <h3 className={`td-item-title ${props.completed && "td-item-title-complete"}`} onClick={toggleVisibility} >
                     {isVisible ? '▲' : '▼'} {props.title}
