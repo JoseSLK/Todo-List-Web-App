@@ -1,0 +1,23 @@
+.td-item-check {
+    color: #6852F2;
+    border: none;
+    cursor: crosshair;
+    transition: all 0.3s ease-in-out;
+    height: 34px;
+    width: 34px;
+}
+
+.td-item-check-complete {
+    color: #30F284;
+}
+
+.td-delete-icon {
+    border-radius: 50%;   
+    color: #F2F2F2;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.td-delete-icon:hover {
+    color: #D9043D;
+}

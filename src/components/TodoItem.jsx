@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { DeleteIcon } from '../icons/DeleteIcon.jsx';
+import { CheckIcon } from '../icons/CheckIcon.jsx';
 
 function timeRemaining(end_date){
     const now = new Date();
@@ -37,32 +39,30 @@ export function TodoItem ( props ){
         <div className="td-item">
 
             <div className='td-item-toogle'>
-                <input 
-                    type="checkbox" 
-                    id={`checkbox-${props.id}`}
-                    className='hidden-checkbox' 
-                    checked={props.completed} 
-                    onChange={() => {
+
+                <CheckIcon 
+                    className={`td-item-check ${props.completed && "td-item-check-complete"}`} 
+                    onClick={() => {
                         props.onComplete();
+                        console.log('Complete');
                         }  
                     }
                 />
-                <label 
-                    htmlFor={`checkbox-${props.id}`}
-                    className={`td-item-check ${props.completed && "td-item-check-complete"}`} 
-                ></label>
+
                 <h3 className={`td-item-title ${props.completed && "td-item-title-complete"}`} onClick={toggleVisibility} >
                     {isVisible ? '▲' : '▼'} {props.title}
                 </h3>
                 <p className='td-item-tr'>T-R: {timeRemainingText}</p>
             </div>
 
-            <span 
+            <DeleteIcon 
                 className='td-delete-icon'
                 onClick={ () => {
-                    props.onDelete();
-                }}
-            >X</span>
+                        props.onDelete();
+                        console.log('Delete');
+                    }
+                } 
+            />
 
             <div className='td-item-content'
                 style ={{

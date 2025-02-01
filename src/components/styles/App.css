@@ -63,34 +63,26 @@
     display: none;
 }
 
-.td-item-check {
-    height: 1.2rem;
+.icon-container-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
     width: 1.2rem;
-    background-color: #6852F2;
-    margin: 5px;
-    border: none;
+    padding: auto;
     border-radius: 50%;
-    cursor: crosshair;
-    transition: all 0.3s ease-in-out;
-}
-.td-item-check-complete {
-    background-color: #30F284;
 }
 
-.td-delete-icon {
+.icon-container-delete{
     display: flex;
-    border-radius: 50%;
-    height: 20px;
+    justify-content: center;
+    align-items: center;
+    height: auto;
     width: 20px;
     position: absolute;
     right: -4px;
     top: -6px;
-    color: #F2F2F2;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-.td-delete-icon:hover {
-    color: #D9043D;
+    padding: auto;
 }
 
 /* Item title counter */
@@ -187,4 +179,14 @@
         bottom: 20px;
         right: 20px;
     }
+}
+
+/* Icons */
+.icon-delete-svg {
+    height: 40px;
+    width: 25px;
+}
+.icon-check-svg {
+    height: 25px;
+    width: 25px;
 }
