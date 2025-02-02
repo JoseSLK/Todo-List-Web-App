@@ -8,39 +8,22 @@ import './components/styles/App.css'
 import { TodoSearch } from './components/TodoSearch'
 import { use } from 'react'
 
-const todoItems = [
-  {
-    title: "Entrar a la Universidad",
-    description: "Con agua y jabon",
-    end_date: "2025-02-10T08:00:00",
-    completed: false,
-    id: 1
-  },
-  {
-    title: "Tarea2",
-    description: "Descripción de la tarea 2",
-    end_date: "2025-02-25T10:00:00",
-    completed: true,
-    id: 2
-  },
-  {
-    title: "Tarea3",
-    description: "Descripción de la tarea 3",
-    end_date: "2025-03-01T12:00:00",
-    completed: false,
-    id: 3
-  },
-  {
-    title: "Tarea4",
-    description: "Descripción de la tarea 4",
-    end_date: "2025-03-01T12:00:00",
-    completed: false,
-    id: 4
-  }
-];
+
+
 
 function App() {
-  const [todos, setTodos] = useState(todoItems);
+  const localStorageTodos = localStorage.getItem('TODOS_V1')
+
+  let parsedTodos;
+
+  if ( !localStorageTodos ) {
+    localStorage.setItem('TODOS_V1', JSON.stringify([]))
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos)
+  }
+
+  const [todos, setTodos] = useState(parsedTodos);
   const [searchValue, setSearchValue] = useState('');
   const [allCompleted, setAllCompleted] = useState(false);
   const [showCongratsMessage, setShowCongratsMessage] = useState(false);
@@ -52,8 +35,11 @@ function App() {
   );
 
   useEffect(() => {
-    const allCompleted = todos.every(todo => todo.completed);
-    setAllCompleted(allCompleted);
+    if ( todos.length > 0 ) {
+      const allCompleted = todos.every(todo => todo.completed);
+      setAllCompleted(allCompleted);
+    }
+    
   }, [todos]);
 
   useEffect(() => {
@@ -74,19 +60,24 @@ function App() {
     }
   }, [allCompleted])
 
+  const saveTodos = ( newTodos ) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
+    setTodos(newTodos)
+  }
+
   const completeTodo = (title) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex( todo => todo.title === title);
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
 
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
   
   const deleteToto = (title) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex( todo => todo.title === title);
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   console.log({showCongratsMessage})
