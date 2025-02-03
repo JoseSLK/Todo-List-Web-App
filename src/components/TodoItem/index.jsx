@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { DeleteIcon } from '../icons/DeleteIcon.jsx';
-import { CheckIcon } from '../icons/CheckIcon.jsx';
+import { DeleteIcon } from '../TodoIcons/DeleteIcon.jsx';
+import { CheckIcon } from '../TodoIcons/CheckIcon.jsx';
+import "./TodoItem.css"
 
 function timeRemaining(end_date){
     const now = new Date();

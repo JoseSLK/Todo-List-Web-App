@@ -1,29 +1,15 @@
 import { useEffect, useState } from 'react'
-import { TodoItem } from './components/TodoItem'
-import { TodoList } from './components/TodoList'
-import { TodoCounter } from './components/TodoCounter'
-import { TodoButtonCreate } from './components/TodoButtonCreate'
-
-import './components/styles/App.css'
-import { TodoSearch } from './components/TodoSearch'
-import { use } from 'react'
-
-
-
+import { TodoItem } from '../components/TodoItem'
+import { TodoList } from '../components/TodoList'
+import { TodoCounter } from '../components/TodoTitle'
+import { TodoButtonCreate } from '../components/TodoButtonCreate'
+import { TodoSearch } from '../components/TodoSearch'
+import { useLocalStorage } from './useLocalStorage'
+import './index.css'
 
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1')
-
-  let parsedTodos;
-
-  if ( !localStorageTodos ) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]))
-    parsedTodos = [];
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos)
-  }
-
-  const [todos, setTodos] = useState(parsedTodos);
+  
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = useState('');
   const [allCompleted, setAllCompleted] = useState(false);
   const [showCongratsMessage, setShowCongratsMessage] = useState(false);
@@ -59,11 +45,6 @@ function App() {
       document.body.classList.remove('green-gradient');
     }
   }, [allCompleted])
-
-  const saveTodos = ( newTodos ) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
-    setTodos(newTodos)
-  }
 
   const completeTodo = (title) => {
     const newTodos = [...todos];

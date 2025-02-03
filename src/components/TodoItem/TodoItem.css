@@ -1,0 +1,85 @@
+.td-item {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    height: auto;
+    border: 2px solid #595856;
+    transition-duration: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+.td-item:hover {
+    background-color: #595856;
+}
+.td-item-toogle{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.td-item-toogle > :not(label) {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+.td-item-title, .td-item-tr {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.td-item-title{
+    font-size: 1rem;
+    color: #F2F2F2;
+    max-width: 400px;
+    overflow: auto;
+}
+
+.td-item-title-complete {
+    text-decoration: line-through;
+    color: #BFBFBF;
+}
+.td-item-tr {
+    font-size: 0.8rem;
+    color: #BFBFBF;
+}
+
+.td-todo-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 1rem;
+}
+
+.td-item-content {
+    color: #F2F2F2;
+    font-family: inherit;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.icon-container-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 1.2rem;
+    padding: auto;
+    border-radius: 50%;
+}
+
+.icon-container-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 20px;
+    position: absolute;
+    right: -4px;
+    top: -6px;
+    padding: auto;
+}

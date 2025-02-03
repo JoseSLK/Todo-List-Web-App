@@ -1,0 +1,25 @@
+/* Todo Button */
+.td-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -20px;
+    right: 1px;
+    color: #F2F2F2;
+    background-color: #595856;
+    border-radius: 25%;
+    border: none;
+    padding: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    transition: background-color 0.4s ease-in-out;
+}
+.td-button:hover {
+    background-color: #7216F2;
+}
+.td-button:active {
+    background-color: #F29849;
+    transform: scale(0.9);
+}

@@ -1,0 +1,10 @@
+/* Input */
+.td-input {
+    background-color: #F2F2F2;
+    color: #595856;
+    border: none;
+    border-radius: 4px;
+    height: 1.4rem;
+    width: 70%;
+    font-family: 'Bunken Tech Sans SC Wide Med', sans-serif;
+}

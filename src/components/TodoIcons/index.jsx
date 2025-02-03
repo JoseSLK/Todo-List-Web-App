@@ -1,7 +1,7 @@
 import React from "react"
-import Check from "../assets/check.svg?react"
-import Delete from "../assets/delete.svg?react"
-import "../components/styles/TodoIcon.css"
+import Check from "./icons/check.svg?react"
+import Delete from "./icons/delete.svg?react"
+import "./TodoIcon.css"
 
 const icons = {
     delete: {
