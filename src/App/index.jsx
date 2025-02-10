@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
-import { TodoItem } from '../components/TodoItem'
-import { TodoList } from '../components/TodoList'
-import { TodoCounter } from '../components/TodoTitle'
-import { TodoButtonCreate } from '../components/TodoButtonCreate'
-import { TodoSearch } from '../components/TodoSearch'
-import { useLocalStorage } from './useLocalStorage'
+import { useLocalStorage } from '../Hooks/useLocalStorage'
 import './index.css'
+import { AppUi } from './AppUi'
 
 function App() {
   
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    items: todos,
+    saveItem: saveTodos,
+    error,
+    loading
+  } = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = useState('');
   const [allCompleted, setAllCompleted] = useState(false);
   const [showCongratsMessage, setShowCongratsMessage] = useState(false);
@@ -61,37 +62,22 @@ function App() {
     saveTodos(newTodos);
   };
 
-  console.log({showCongratsMessage})
-
   return (
-    <>
-      <TodoCounter
-        total={totalTodos} 
-        completed={completedTodos}
-      />
-      <TodoSearch 
-        searchValue={searchValue} 
-        setSearchValue={setSearchValue}
-      />
-      <TodoList>
-        {searchedTodos.map(todo => (
-          <TodoItem 
-            key={todo.title} 
-            title={todo.title} 
-            description={todo.description} 
-            end_date={todo.end_date} 
-            completed={todo.completed} 
-            id={todo.id}
-            onComplete={() => completeTodo(todo.title)}
-            onDelete={() => deleteToto(todo.title)}
-          />
-        ))}
-      </TodoList>
-      <TodoButtonCreate/>
 
-      {showCongratsMessage && <div className={`td-congrats-message ${allCompleted? 'fade-in' : 'fade-out'}`}>¡Tareas completadas!</div>}
-      
-    </>
+    <AppUi
+      error={error}
+      loading={loading}
+      completeTodo={completeTodo}
+      deleteToto={deleteToto}
+      totalTodos={totalTodos}
+      completedTodos={completedTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      showCongratsMessage={showCongratsMessage}
+      allCompleted={allCompleted}
+    />
+
   )
 }
 

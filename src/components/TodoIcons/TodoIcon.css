@@ -31,3 +31,15 @@
     height: 25px;
     width: 25px;
 }
+
+.td-error-icon {
+    height: 40px;
+    width: 40px;
+    color: #D9043D;
+}
+
+.td-empty-icon {
+    height: 40px;
+    width: 40px;
+    color: #8E12E3;
+}

@@ -1,0 +1,6 @@
+.td-alert {
+    color: red;
+    font-family: system-ui;
+    font-size: 1.2rem;
+    z-index: 9999;
+}

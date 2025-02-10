@@ -4,7 +4,7 @@ import { TodoIcon } from "./";
 export function CheckIcon ( props ){
     return (
         <TodoIcon 
-        className={`${props.className}`}
+            className={`${props.className}`}
             type="check"
             event={props.onClick}
         />

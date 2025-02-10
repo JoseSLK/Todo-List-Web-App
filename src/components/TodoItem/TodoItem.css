@@ -6,12 +6,24 @@
     border-radius: 4px;
     height: auto;
     border: 2px solid #595856;
-    transition-duration: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     cursor: pointer;
+    overflow: hidden;
 }
 .td-item:hover {
     background-color: #595856;
 }
+
+.td-item-title,
+.td-item-content,
+.td-item-tr {
+    transition: 
+    height 0.3s ease-in-out,
+    opacity 0.2s ease-in-out;
+}
+
+
+
 .td-item-toogle{
     display: flex;
     align-items: center;

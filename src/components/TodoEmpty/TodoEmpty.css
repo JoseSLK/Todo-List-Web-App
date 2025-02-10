@@ -1,0 +1,21 @@
+.td-empty-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #403F3C;
+    border-radius: 4px;
+    padding: 1rem;
+    color: #F2F2F2;
+    font-family: System-ui;
+    font-size: 1rem;
+    transition-duration: 0.4s;
+}
+
+.td-empty-container:hover {
+    scale: 1.05;
+    z-index: 999999;
+}

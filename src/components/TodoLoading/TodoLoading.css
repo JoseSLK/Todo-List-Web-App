@@ -1,0 +1,32 @@
+.td-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 8px;
+
+}
+
+.td-loading-container {
+    width: 400px;
+    height: 53px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    z-index: 999999;
+    background-color: #403F3C;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}
