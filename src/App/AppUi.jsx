@@ -7,51 +7,84 @@ import { TodoLoading } from '../components/TodoLoading'
 import { TodoError } from '../components/TodoError'
 import { TodoEmpty } from '../components/TodoEmpty'
 import './app.css'
+import { TodoContext } from '../TodoContex'
+import { useContext } from 'react'
+import { useState, useEffect } from 'react'
 
+export function AppUi () {
 
-export function AppUi ({
+  const [allCompleted, setAllCompleted] = useState(false);
+  const [showCongratsMessage, setShowCongratsMessage] = useState(false);
+  const { todos } = useContext(TodoContext)
+  const {
     loading,
     error,
     completeTodo,
     deleteToto,
-    totalTodos,
-    completedTodos,
-    searchValue,
-    setSearchValue,
     searchedTodos,
-    showCongratsMessage,
-    allCompleted
-}) {
-   console.log( loading + " " + searchedTodos.length)
+  } = useContext(TodoContext);
+
+  useEffect(() => {
+    if (allCompleted) {
+      setShowCongratsMessage(true);
+      const timer = setTimeout(() => {
+        setShowCongratsMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [allCompleted])
+
+  useEffect(() => {
+    if ( todos.length > 0 ) {
+      const allCompleted = todos.every(todo => todo.completed);
+      setAllCompleted(allCompleted);
+    }
+    
+  }, [todos]);
+
+  useEffect(() => {
+    if (allCompleted) {
+      setShowCongratsMessage(true);
+      const timer = setTimeout(() => {
+        setShowCongratsMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [allCompleted]);
+
+  useEffect(() => {
+    if(allCompleted){
+      document.body.classList.add('green-gradient');
+    } else {
+      document.body.classList.remove('green-gradient');
+    }
+  }, [allCompleted]);
+  
     return (
         <>
-          <TodoCounter
+          <TodoCounter />
+          <TodoSearch />
 
-            total={totalTodos} 
-            completed={completedTodos}
-          />
-          <TodoSearch 
-            searchValue={searchValue} 
-            setSearchValue={setSearchValue}
-          />
-          <TodoList>
-            {loading && <TodoLoading />}
-            {error && <TodoError />}
-            {(!loading && searchedTodos.length === 0) && <TodoEmpty />}
+            <TodoList>
 
-            {searchedTodos.map(todo => (
-              <TodoItem 
-                key={todo.title} 
-                title={todo.title} 
-                description={todo.description} 
-                end_date={todo.end_date} 
-                completed={todo.completed} 
-                id={todo.id}
-                onComplete={() => completeTodo(todo.title)}
-                onDelete={() => deleteToto(todo.title)}
-              />
-            ))}
-          </TodoList>
+              {loading && <TodoLoading />}
+              {error && <TodoError />}
+              {(!loading && searchedTodos.length === 0) && <TodoEmpty />}
+
+              {searchedTodos.map(todo => (
+                <TodoItem 
+                  key={todo.title} 
+                  title={todo.title} 
+                  description={todo.description} 
+                  end_date={todo.end_date} 
+                  completed={todo.completed} 
+                  id={todo.id}
+                  onComplete={() => completeTodo(todo.title)}
+                  onDelete={() => deleteToto(todo.title)}
+                />
+              ))}
+            </TodoList>
+
           <TodoButtonCreate/>
     
           {showCongratsMessage && <div className={`td-congrats-message ${allCompleted? 'fade-in' : 'fade-out'}`}>¡Tareas completadas!</div>}
