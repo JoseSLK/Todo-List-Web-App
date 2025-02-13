@@ -10,6 +10,8 @@ import './app.css'
 import { TodoContext } from '../TodoContex'
 import { useContext } from 'react'
 import { useState, useEffect } from 'react'
+import { Modal } from '../Modal'
+import { FormAddTodo } from '../components/FormAddTodo'
 
 export function AppUi () {
 
@@ -22,7 +24,10 @@ export function AppUi () {
     completeTodo,
     deleteToto,
     searchedTodos,
+    openModal,
+    setOpenModal
   } = useContext(TodoContext);
+
 
   useEffect(() => {
     if (allCompleted) {
@@ -88,6 +93,13 @@ export function AppUi () {
           <TodoButtonCreate/>
     
           {showCongratsMessage && <div className={`td-congrats-message ${allCompleted? 'fade-in' : 'fade-out'}`}>¡Tareas completadas!</div>}
+
+          {openModal && (
+            <Modal>
+              <FormAddTodo />
+            </Modal>
+          )};
+          
           
         </>
       )

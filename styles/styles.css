@@ -1,0 +1,71 @@
+html {
+    box-sizing: border-box;
+    border: 0;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, #262521 70%, #403F3C 100%);
+    z-index: -1;
+  }
+  
+  body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, #262521 80%, #30F284 180%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  body.green-gradient::after {
+    opacity: 1;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-family: 'Bunken Tech Sans SC Wide Med', sans-serif;
+    max-width: 85vw;
+    max-height: 100vh;
+    overflow: visible;
+    z-index: 1;
+  }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .td-item {
+        flex-direction: column;
+    }
+    .td-counter-title {
+        font-size: 1.4rem;
+    }
+    .td-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+}
