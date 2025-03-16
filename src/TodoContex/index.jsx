@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const TodoContext = React.createContext();
@@ -35,6 +35,15 @@ function TodoProvider ({ children }) {
         newTodos.splice(todoIndex, 1);
         saveTodos(newTodos);
       };
+
+      useEffect (() => {
+        const modal = document.getElementById('modal')
+        if (openModal) {
+          modal.classList.add('active')
+        } else {
+          modal.classList.remove('active')
+        }
+      }, [openModal]);
 
     return (
         <TodoContext.Provider value={{

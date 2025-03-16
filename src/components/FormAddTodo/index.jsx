@@ -4,7 +4,7 @@ import { TodoContext } from "../../TodoContex";
 import { useContext } from "react";
 
 export function FormAddTodo() {
-    const { todos, saveTodos } = useContext(TodoContext);
+    const { todos, saveTodos, setOpenModal } = useContext(TodoContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +21,7 @@ export function FormAddTodo() {
 
     return (
         <form className="td-form-add-todo" onSubmit={handleSubmit}>
+            <div className="td-back" onClick={() => setOpenModal(false) }></div>
             {/* title, description, end_date, completed */}
             <input type="text" placeholder="Título" className="td-form-add-todo-input" name="title"/>
             <input type="text" placeholder="Descripción" className="td-form-add-todo-input" name="description"/>

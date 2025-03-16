@@ -1,0 +1,51 @@
+.td-form-add-todo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.td-back {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 30px solid #30F284;
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    transition-duration: 0.3s;
+}
+
+.td-back:hover {
+    border-right: 30px solid #403F3C;
+}
+
+.td-form-add-todo-input {
+    font-family: system-ui;
+    border-radius: 5px;
+    height: 30px;
+    border: 3px black solid;
+    transition-duration: 0.3s;
+}
+
+.td-form-add-todo-input:hover {
+    background-color: #403F3C;
+    outline: 2px solid black;
+    color:aliceblue;
+}
+
+.td-form-add-todo-button {
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    background-color: #30F284;
+    border-color: #403F3C;
+    transition-duration: 0.3s;
+}
+
+.td-form-add-todo-button:hover {
+    transform: scale(1.05);
+}
