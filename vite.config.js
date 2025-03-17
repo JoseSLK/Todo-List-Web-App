@@ -7,4 +7,5 @@ export default defineConfig({
   plugins: [react()
     , svgr(),
   ],
+  base: '/Todo-List-Web-App/',
 })
